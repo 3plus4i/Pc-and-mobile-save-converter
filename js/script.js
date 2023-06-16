@@ -44,18 +44,29 @@ const converter = {
 
 function encode(data) {
     console.log("Encoded(n): ", data);
-    let hash = "7a990d405d2c6fb93aa8fbb0ec1a3b23";
+    let inText = $("#input").val()
     data = JSON.stringify(data);
-    let encodedData = pako.deflate(data, { to: 'string' });
+    var encodedData, hash;
+    
+    if(inText.startsWith("7a990d405d2c6fb93aa8fbb0ec1a3b23")) {
+        hash = "7e8bb5a89f2842ac4af01b3b7e228592";
+        encodedData = pako.deflateRaw(data, { to: 'string' });
+    } else if(inText.startsWith("7e8bb5a89f2842ac4af01b3b7e228592")) {
+        hash = "7a990d405d2c6fb93aa8fbb0ec1a3b23";
+        encodedData = pako.deflate(data, { to: 'string' });
+    }
+    
     return hash + btoa(encodedData);
-
 }
 
 function decode(data) {
-    let result = data.slice(32)
-    data = pako.inflate(atob(result), { to: 'string' });
+    if (data.startsWith("7a990d405d2c6fb93aa8fbb0ec1a3b23")) {
+        data = pako.inflate(atob(data.slice(32)), { to: 'string' });
+    } else if(data.startsWith("7e8bb5a89f2842ac4af01b3b7e228592")) {
+        data = pako.inflateRaw(atob(data.slice(32)), { to: 'string' });
+    }
+  
     data = JSON.parse(data);
     console.log("Decoded(n): ", data);
     return data;
-
 }
