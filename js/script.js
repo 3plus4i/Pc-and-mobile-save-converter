@@ -48,10 +48,10 @@ function encode(data) {
     data = JSON.stringify(data);
     var encodedData, hash;
     
-    if(inText.startsWith("7a990d405d2c6fb93aa8fbb0ec1a3b23")) {
+    if(inText.startsWith("7a990")) {
         hash = "7e8bb5a89f2842ac4af01b3b7e228592";
         encodedData = pako.deflateRaw(data, { to: 'string' });
-    } else if(inText.startsWith("7e8bb5a89f2842ac4af01b3b7e228592")) {
+    } else if(inText.startsWith("7e8bb")) {
         hash = "7a990d405d2c6fb93aa8fbb0ec1a3b23";
         encodedData = pako.deflate(data, { to: 'string' });
     }
@@ -60,9 +60,9 @@ function encode(data) {
 }
 
 function decode(data) {
-    if (data.startsWith("7a990d405d2c6fb93aa8fbb0ec1a3b23")) {
+    if (data.startsWith("7a990")) {
         data = pako.inflate(atob(data.slice(32)), { to: 'string' });
-    } else if(data.startsWith("7e8bb5a89f2842ac4af01b3b7e228592")) {
+    } else if(data.startsWith("7e8bb")) {
         data = pako.inflateRaw(atob(data.slice(32)), { to: 'string' });
     }
   
