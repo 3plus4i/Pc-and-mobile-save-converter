@@ -29,15 +29,27 @@ const converter = {
     "pc": function (object) {
         let temp3 = object;
         temp3.rubies = Math.round(object.rubies * 10);
+        if ("mercenaries" in temp3.mercenaries) {
+            for (let merc in temp3.mercenaries.mercenaries) {
+                if (temp3.mercenaries.mercenaries[merc].lastQuestRewardType == 6) {
+                    temp3.mercenaries.mercenaries[merc].lastQuestRewardQty = object.mercenaries.mercenaries[merc].lastQuestRewardQty * 10;
+                }
+            }
+        }
         temp3.saveOrigin = "mobile";
-        temp3.readPatchNumber = "2.5.0";
         return temp3;
     },
     "mobile": function (object) {
         let temp4 = object;
         temp4.rubies = Math.round(object.rubies / 10);
+        if ("mercenaries" in temp4.mercenaries) {
+            for (let merc in temp4.mercenaries.mercenaries) {
+                if (temp4.mercenaries.mercenaries[merc].lastQuestRewardType == 6) {
+                    temp4.mercenaries.mercenaries[merc].lastQuestRewardQty = object.mercenaries.mercenaries[merc].lastQuestRewardQty / 10;
+                }
+            }
+        }
         temp4.saveOrigin = "pc";
-        temp4.readPatchNumber = "1.0e10";
         return temp4;
     }
 }
