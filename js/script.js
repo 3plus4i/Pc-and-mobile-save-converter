@@ -38,7 +38,11 @@ const converter = {
         }
         temp3.saveOrigin = "mobile";
         console.log("PC:", temp3.readPatchNumber);
-        temp3.readPatchNumber = "2.7.0";
+        if (temp3.readPatchNumber.length > 6) {
+            temp3.readPatchNumber = "2.7." + temp3.readPatchNumber.slice(-4);
+        } else {
+            temp3.readPatchNumber = "2.5.0";
+        }
         return temp3;
     },
     "mobile": function (object) {
@@ -53,7 +57,11 @@ const converter = {
         }
         temp4.saveOrigin = "pc";
         console.log("Mobile:", temp4.readPatchNumber);
-        temp4.readPatchNumber = "1.0e12";
+        if (temp4.readPatchNumber.length > 5) {
+            temp4.readPatchNumber = "1.0e12-" + temp4.readPatchNumber.slice(-4);
+        } else {
+            temp4.readPatchNumber = "1.0e12";
+        }
         return temp4;
     }
 }
