@@ -52,7 +52,7 @@ const converter = {
             }
         }
         temp4.saveOrigin = "pc";
-        console.log("Mobile:", temp3.readPatchNumber);
+        console.log("Mobile:", temp4.readPatchNumber);
         temp4.readPatchNumber = "1.0e12";
         return temp4;
     }
