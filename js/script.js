@@ -29,6 +29,9 @@ const converter = {
     "pc": function (object) {
         let temp3 = object;
         temp3.rubies = Math.round(object.rubies * 10);
+        if ("pendingRaidRubies" in temp3) {
+            temp3.pendingRaidRubies = Math.round(object.pendingRaidRubies * 10);
+        }
         if ("mercenaries" in temp3.mercenaries) {
             for (let merc in temp3.mercenaries.mercenaries) {
                 if (temp3.mercenaries.mercenaries[merc].lastQuestRewardType == 6) {
@@ -48,6 +51,9 @@ const converter = {
     "mobile": function (object) {
         let temp4 = object;
         temp4.rubies = Math.round(object.rubies / 10);
+        if ("pendingRaidRubies" in temp4) {
+            temp4.pendingRaidRubies = Math.round(object.pendingRaidRubies / 10);
+        }
         if ("mercenaries" in temp4.mercenaries) {
             for (let merc in temp4.mercenaries.mercenaries) {
                 if (temp4.mercenaries.mercenaries[merc].lastQuestRewardType == 6) {
