@@ -28,7 +28,7 @@ function convert(text) {
 const converter = {
     "pc": function (object) {
         let temp3 = object;
-        temp3.rubies = Math.round(object.rubies * 10);
+        /*temp3.rubies = Math.round(object.rubies * 10);
         if ("pendingRaidRubies" in temp3) {
             temp3.pendingRaidRubies = Math.round(object.pendingRaidRubies * 10);
         }
@@ -38,7 +38,7 @@ const converter = {
                     temp3.mercenaries.mercenaries[merc].lastQuestRewardQty = object.mercenaries.mercenaries[merc].lastQuestRewardQty * 10;
                 }
             }
-        }
+        }*/
         temp3.saveOrigin = "mobile";
         console.log("PC:", temp3.readPatchNumber);
         if (temp3.readPatchNumber.length > 6) {
@@ -50,7 +50,7 @@ const converter = {
     },
     "mobile": function (object) {
         let temp4 = object;
-        temp4.rubies = Math.round(object.rubies / 10);
+        /*temp4.rubies = Math.round(object.rubies / 10);
         if ("pendingRaidRubies" in temp4) {
             temp4.pendingRaidRubies = Math.round(object.pendingRaidRubies / 10);
         }
@@ -60,7 +60,7 @@ const converter = {
                     temp4.mercenaries.mercenaries[merc].lastQuestRewardQty = object.mercenaries.mercenaries[merc].lastQuestRewardQty / 10;
                 }
             }
-        }
+        }*/
         temp4.saveOrigin = "pc";
         console.log("Mobile:", temp4.readPatchNumber);
         if (temp4.readPatchNumber.length > 5) {
